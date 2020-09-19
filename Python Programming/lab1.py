@@ -1,4 +1,5 @@
-
+#  22p21c0568-วิศรุต
+# 8 Puzzle
 class Node:
     def __init__(self,data,level,fval):
         self.data = data
@@ -45,14 +46,13 @@ class Node:
 
 
 class Puzzle:
-    def __init__(self,size):
-        self.n = size
+    def __init__(self):
         self.open = []
         self.closed = []
 
     def accept(self):
         puz = []
-        for i in range(0,self.n):
+        for i in range(0,3):
             temp = input().split(" ")
             puz.append(temp)
         return puz
@@ -62,29 +62,21 @@ class Puzzle:
 
     def h(self,start,goal):
         temp = 0
-        for i in range(0,self.n):
-            for j in range(0,self.n):
+        for i in range(0,3):
+            for j in range(0,3):
                 if start[i][j] != goal[i][j] and start[i][j] != '_':
                     temp += 1
         return temp
         
 
     def process(self):
-        print("Enter the start state matrix \n")
-        start = self.accept()
-        print("Enter the goal state matrix \n")        
-        goal = self.accept()
-
+        start = [['_','1','3'],['4','2','5'],['7','8','6']]       
+        goal = [['1','2','3'],['4','5','6'],['7','8','9']]
         start = Node(start,0,0)
         start.fval = self.f(start,goal)
         self.open.append(start)
-        print("\n\n")
         while True:
             cur = self.open[0]
-            print("")
-            print("  | ")
-            print("  | ")
-            print(" \\\'/ \n")
             for i in cur.data:
                 for j in i:
                     print(j,end=" ")
@@ -95,9 +87,12 @@ class Puzzle:
                 i.fval = self.f(i,goal)
                 self.open.append(i)
             self.closed.append(cur)
+            print("  v  ")  
+            print("  v  ")  
+            print("  v  ")   
             del self.open[0]
             self.open.sort(key = lambda x:x.fval,reverse=False)
 
 
-puz = Puzzle(3)
+puz = Puzzle()
 puz.process()

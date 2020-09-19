@@ -1,4 +1,5 @@
 # Graph Travelsal with Depth First Search
+#  22p21c0568-วิศรุต
 import time
 from collections import defaultdict 
 class Graph:
@@ -11,7 +12,9 @@ class Graph:
         print(v)
         for i in self.graph[v]:
             if visited[i] == False:
-                time.sleep(2)
+                time.sleep(1)
+                print('v')
+                time.sleep(1)
                 self.DFSWalk(i,visited)
     def DFS(self,v):
         visited = [False] * (max(self.graph)+1)
