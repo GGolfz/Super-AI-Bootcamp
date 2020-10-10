@@ -1,0 +1,16 @@
+version: '3'
+services:
+    flask-api:
+        container_name: flask-api
+        build: ./Backend
+        ports:
+          - 5000:5000
+        volumes:
+          - ./Backend:/app
+    front-end:
+        container_name: frontend
+        build: ./frontend
+        ports:
+          - 8080:80
+        volumes:
+          - ./frontend:/app
